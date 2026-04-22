@@ -19,30 +19,42 @@ export default function AnimatedFooter() {
   };
 
   return (
-    <footer className="relative bg-background pt-20 pb-10 overflow-hidden">
-      {/* Background Decorative Line */}
+    <footer className="relative py-12 sm:py-16 overflow-hidden flex flex-col items-center justify-center">
+      {/* Top border line */}
       <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-purple-500/50 to-transparent" />
-      
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="flex flex-col items-center space-y-12">
-          
-          {/* --- TOP SECTION: LOGO/NAME --- */}
-          <motion.div 
+
+      {/* Animated glows */}
+      <motion.div
+        className="absolute -bottom-20 -left-20 w-48 sm:w-64 h-48 sm:h-64 bg-purple-600/10 rounded-full blur-[80px] sm:blur-[100px] pointer-events-none"
+        animate={{ scale: [1, 1.2, 1] }}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.div
+        className="absolute -bottom-20 -right-20 w-48 sm:w-64 h-48 sm:h-64 bg-pink-600/10 rounded-full blur-[80px] sm:blur-[100px] pointer-events-none"
+        animate={{ scale: [1, 1.3, 1] }}
+        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+      />
+
+      <div className="container max-w-7xl mx-auto px-4 sm:px-6 w-full relative z-10">
+        <div className="flex flex-col items-center space-y-8 sm:space-y-12">
+
+          {/* Logo */}
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="text-center"
           >
-            <h3 className="text-3xl font-black tracking-tighter mb-2">
+            <h3 className="text-2xl sm:text-3xl font-black tracking-tighter mb-1 sm:mb-2">
               ANIKA<span className="text-purple-500">.</span>TAHSIN
             </h3>
-            <p className="text-muted-foreground text-sm font-mono tracking-widest uppercase">
+            <p className="text-muted-foreground text-xs sm:text-sm font-mono tracking-widest uppercase">
               // Coding with Joy Since 2019
             </p>
           </motion.div>
 
-          {/* --- MIDDLE SECTION: SOCIAL NODES --- */}
-          <div className="flex flex-wrap justify-center gap-6 md:gap-10">
+          {/* Social links */}
+          <div className="flex flex-wrap justify-center gap-4 sm:gap-6 md:gap-10">
             {socialLinks.map((social, i) => (
               <motion.a
                 key={social.label}
@@ -54,42 +66,35 @@ export default function AnimatedFooter() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1, type: "spring", stiffness: 200 }}
                 whileHover={{ y: -8, scale: 1.2 }}
-                className={`text-muted-foreground transition-colors duration-300 ${social.color} p-4 rounded-full bg-muted/30 border border-border/50 backdrop-blur-sm`}
+                className={`text-muted-foreground transition-colors duration-300 ${social.color} p-3 sm:p-4 rounded-full bg-muted/30 border border-border/50 backdrop-blur-sm`}
               >
-                <social.icon size={24} />
+                <social.icon size={20} />
               </motion.a>
             ))}
           </div>
 
-          {/* --- BOTTOM SECTION: COPYRIGHT & BACK TO TOP --- */}
-          <div className="w-full pt-10 border-t border-border/30 flex flex-col md:flex-row justify-between items-center gap-6">
-            
-            <motion.p 
+          {/* Bottom bar */}
+          <div className="w-full pt-6 sm:pt-10 border-t border-border/30 flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-6">
+            <motion.p
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              className="text-muted-foreground text-sm flex items-center gap-2"
+              className="text-muted-foreground text-xs sm:text-sm flex items-center gap-2"
             >
-              © {new Date().getFullYear()} Made with <Heart size={14} className="text-pink-500 fill-pink-500 animate-pulse" /> by Anika
+              © {new Date().getFullYear()} Made with <Heart size={12} className="text-pink-500 fill-pink-500 animate-pulse" /> by Anika
             </motion.p>
 
-            {/* Back to Top Button */}
             <motion.button
               onClick={scrollToTop}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
-              className="group flex items-center gap-2 text-sm font-bold text-muted-foreground hover:text-purple-500 transition-colors"
+              className="group flex items-center gap-2 text-xs sm:text-sm font-bold text-muted-foreground hover:text-purple-500 transition-colors"
             >
               Back to Top
-              <ArrowUpCircle className="group-hover:-translate-y-1 transition-transform" />
+              <ArrowUpCircle className="w-4 h-4 sm:w-5 sm:h-5 group-hover:-translate-y-1 transition-transform" />
             </motion.button>
-            
           </div>
         </div>
       </div>
-
-      {/* Decorative Glows */}
-      <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-purple-600/10 rounded-full blur-[100px] pointer-events-none" />
-      <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-pink-600/10 rounded-full blur-[100px] pointer-events-none" />
     </footer>
   );
 }
