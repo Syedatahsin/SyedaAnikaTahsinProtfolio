@@ -128,18 +128,18 @@ export default function PortfolioHero() {
             </div>
           </motion.div>
 
-          {/* Right Column — Portrait */}
+          {/* Right Column — Animated Portrait */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8 }}
             className="relative flex justify-center items-center order-1 md:order-2"
           >
-            <div className="relative w-[220px] h-[220px] sm:w-[280px] sm:h-[280px] md:w-full md:h-auto md:aspect-square max-w-[420px]">
-              {/* Spinning Frame */}
+            <div className="relative w-[280px] sm:w-[320px] md:w-full max-w-[380px] mx-auto flex items-center justify-center">
+              {/* Spinning decorative ring behind */}
               <motion.div
                 animate={controls}
-                className="absolute inset-0 rounded-full border-4 border-dashed border-primary/30 p-4"
+                className="absolute inset-[-20px] sm:inset-[-30px] rounded-3xl border-2 border-dashed border-primary/20 pointer-events-none"
               >
                 <motion.div
                   animate={{ rotate: -360 }}
@@ -152,7 +152,7 @@ export default function PortfolioHero() {
                       className="absolute inset-0 flex justify-center pointer-events-none"
                       style={{ transform: `rotate(${index * 90}deg)` }}
                     >
-                      <div className="font-mono text-[10px] sm:text-xs uppercase tracking-widest font-bold text-primary/60 whitespace-nowrap mt-2">
+                      <div className="font-mono text-[10px] sm:text-xs uppercase tracking-widest font-bold text-primary/60 whitespace-nowrap mt-1">
                         {quality}
                       </div>
                     </div>
@@ -164,19 +164,34 @@ export default function PortfolioHero() {
                 <motion.div animate={{ rotate: -360 }} transition={{ duration: 15, repeat: Infinity, ease: 'linear' }} className="absolute -bottom-6 left-1/4 text-primary/40"><Code2 size={24} /></motion.div>
               </motion.div>
 
-              {/* Portrait */}
+              {/* Glow background behind the picture */}
+              <motion.div 
+                animate={{ 
+                  scale: [1, 1.15, 1],
+                  opacity: [0.3, 0.5, 0.3]
+                }}
+                transition={{ duration: 6, repeat: Infinity }}
+                className="absolute inset-6 bg-purple-500/20 dark:bg-purple-500/30 blur-[60px] sm:blur-[80px] rounded-3xl -z-10 pointer-events-none" 
+              />
+
+              {/* Portrait Picture — Rounded Rectangle */}
               <motion.div
-                whileHover={{ scale: 1.02 }}
-                transition={{ type: "spring", bounce: 0.4 }}
-                className="relative z-10 w-[70%] h-[70%] mx-auto mt-[15%] rounded-full overflow-hidden border-[4px] sm:border-[6px] border-background shadow-2xl shadow-primary/20 dark:shadow-primary/40 group cursor-pointer"
+                whileHover={{ scale: 1.03, rotate: 1 }}
+                animate={{ y: [0, -12, 0] }}
+                transition={{ 
+                  y: { duration: 5, repeat: Infinity, ease: "easeInOut" },
+                  scale: { type: "spring", stiffness: 300 }
+                }}
+                className="relative z-10 w-full aspect-[3/4] rounded-3xl overflow-hidden group cursor-pointer border-2 border-purple-500/30 dark:border-purple-400/40 shadow-[0_20px_60px_rgba(168,85,247,0.3)] dark:shadow-[0_20px_60px_rgba(168,85,247,0.5)] bg-gradient-to-b from-purple-500/10 to-fuchsia-500/10"
               >
-                <div className="absolute inset-0 z-20 bg-gradient-to-tr from-primary/20 via-transparent to-transparent opacity-80 mix-blend-overlay pointer-events-none transition-opacity duration-500 group-hover:opacity-100" />
+                {/* Gradient overlay on edges */}
+                <div className="absolute inset-0 z-20 rounded-3xl pointer-events-none bg-gradient-to-t from-black/30 via-transparent to-transparent" />
                 <Image
-                  src="/1000044430.png"
-                  alt="Anika's Portrait"
+                  src="/profile.png"
+                  alt="Syeda Anika Tahsin"
                   fill
-                  sizes="(max-width: 640px) 160px, (max-width: 768px) 200px, 35vw"
-                  className="object-cover object-[center_20%] transition-all duration-700 ease-out group-hover:scale-[1.03]"
+                  sizes="(max-width: 640px) 280px, (max-width: 768px) 320px, 380px"
+                  className="object-cover object-[center_15%] transition-all duration-700 group-hover:scale-105"
                   priority
                 />
               </motion.div>

@@ -54,55 +54,29 @@ export default function BigAboutMe() {
 
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 w-full relative z-20">
 
-        {/* MAIN HERO — stacked on mobile */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-24 items-center mb-12 sm:mb-20">
+        {/* MAIN HERO — centered single column */}
+        <div className="relative max-w-4xl mx-auto mb-12 sm:mb-20 group">
+          {/* Watermark Letter A */}
+          <span className="absolute -top-16 sm:-top-28 left-1/2 -translate-x-1/2 text-[15rem] sm:text-[24rem] lg:text-[32rem] font-black text-purple-500/5 select-none pointer-events-none leading-none group-hover:text-purple-500/10 transition-colors duration-1000 -z-10">
+            A
+          </span>
 
-          {/* Image — centered on mobile */}
-          <motion.div
-            initial={{ opacity: 0, x: -80, scale: 0.9, filter: "blur(10px)" }}
-            whileInView={{ opacity: 1, x: 0, scale: 1, filter: "blur(0px)" }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-            className="relative flex justify-center group"
-          >
-            <span className="absolute -top-12 sm:-top-20 -left-12 sm:-left-20 text-[12rem] sm:text-[18rem] lg:text-[25rem] font-black text-purple-500/5 select-none pointer-events-none leading-none group-hover:text-purple-500/10 transition-colors duration-1000">A</span>
-            <motion.div 
-              animate={{ 
-                scale: [1, 1.2, 1],
-                opacity: [0.2, 0.4, 0.2]
-              }}
-              transition={{ duration: 6, repeat: Infinity }}
-              className="absolute inset-0 bg-purple-500/30 blur-[100px] sm:blur-[150px] rounded-full" 
-            />
-            <motion.img
-              whileHover={{ scale: 1.05, rotate: 2 }}
-              animate={{ y: [0, -20, 0] }}
-              transition={{ 
-                y: { duration: 5, repeat: Infinity, ease: "easeInOut" },
-                scale: { type: "spring", stiffness: 300 }
-              }}
-              src="/aboutme.png"
-              alt="Anika Tahsin"
-              className="w-full max-w-[280px] sm:max-w-[400px] lg:max-w-[500px] mx-auto h-auto relative z-10 drop-shadow-[0_20px_60px_rgba(168,85,247,0.3)] transition-all duration-700 group-hover:drop-shadow-[0_30px_80px_rgba(168,85,247,0.5)]"
-            />
-          </motion.div>
-
-          {/* Text */}
+          {/* Text content */}
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={containerVariants}
-            className="space-y-6 sm:space-y-8 text-center lg:text-left"
+            className="space-y-6 sm:space-y-8 text-center"
           >
             <motion.div variants={slideUp} className="space-y-4 sm:space-y-6">
               <h3 className="text-4xl sm:text-5xl md:text-6xl font-black text-foreground tracking-tighter mb-4">
                 About <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500 underline decoration-purple-500/20 underline-offset-8">Me</span>
               </h3>
-              <div className="h-1.5 w-20 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full mb-8 mx-auto lg:mx-0 shadow-[0_0_15px_rgba(168,85,247,0.5)]" />
+              <div className="h-1.5 w-20 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full mb-8 mx-auto shadow-[0_0_15px_rgba(168,85,247,0.5)]" />
               <div className="space-y-2">
                 <h4 className="font-mono text-purple-400 tracking-[0.5em] uppercase text-xs sm:text-sm font-black opacity-80 decoration-fuchsia-500">Syeda Anika Tahsin</h4>
-                <div className="w-full h-px bg-gradient-to-r from-purple-500/50 via-transparent to-transparent hidden lg:block" />
+                <div className="w-40 h-px bg-gradient-to-r from-transparent via-purple-500/50 to-transparent mx-auto" />
               </div>
               <h2 className="text-5xl sm:text-7xl md:text-8xl font-black tracking-tighter leading-[0.85] text-foreground">
                 Turning Logic <br />
@@ -112,8 +86,8 @@ export default function BigAboutMe() {
               </h2>
             </motion.div>
 
-            <motion.div variants={slideUp} className="space-y-4 sm:space-y-6">
-              <div className="flex items-center gap-2 sm:gap-3 text-purple-400 font-bold uppercase tracking-widest text-xs sm:text-sm justify-center lg:justify-start">
+            <motion.div variants={slideUp} className="space-y-4 sm:space-y-6 max-w-3xl mx-auto text-left px-4 sm:px-0">
+              <div className="flex items-center gap-2 sm:gap-3 text-purple-400 font-bold uppercase tracking-widest text-xs sm:text-sm justify-center sm:justify-start">
                 <History className="w-4 h-4 sm:w-5 sm:h-5" /> The 2019 Awakening
               </div>
               <p className="text-base sm:text-xl text-muted-foreground leading-relaxed first-letter:text-5xl sm:first-letter:text-7xl first-letter:font-black first-letter:text-purple-500 first-letter:mr-2 sm:first-letter:mr-3 first-letter:float-left first-letter:leading-[1]">
@@ -122,9 +96,12 @@ export default function BigAboutMe() {
               <p className="text-base sm:text-xl text-muted-foreground leading-relaxed">
                 The moment I decoded the underlying logic, programming transformed from a struggle into an immense source of enjoyment. Today, I am deeply in love with the process of building; there is a unique thrill in seeing abstract thoughts materialize into functional applications.
               </p>
+              <p className="text-base sm:text-xl text-muted-foreground leading-relaxed">
+                As my journey continued, I discovered that I enjoy every stage of the development process. From designing clean, engaging user interfaces to building reliable backend systems, I love creating applications that combine aesthetics with functionality. Solving complex problems while crafting meaningful user experiences is what inspires me to keep learning, improving, and building every day.
+              </p>
             </motion.div>
 
-            <motion.div variants={slideUp} className="flex items-center gap-3 sm:gap-4 text-purple-500 font-mono text-xs sm:text-sm justify-center lg:justify-start">
+            <motion.div variants={slideUp} className="flex items-center gap-3 sm:gap-4 text-purple-500 font-mono text-xs sm:text-sm justify-center">
               <Code2 className="w-4 h-4 sm:w-5 sm:h-5" />
               <span>// Driven by Curiosity. Sustained by Logic.</span>
             </motion.div>
